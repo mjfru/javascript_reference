@@ -16,5 +16,6 @@
   - Google's JavaScript engine (V8) was extracted to run JS anywhere (node.js!)
   - Node.js can be executed on any machine and is therefore often used to build web backends (server-side JS)
   - Node.js CAN access the local filesystem, interact wit the operating system, it -cannot- manipulate HTML or CSS.
-  
+
+* Code in JS is parsed, compiled, and executed from top to bottom.
 */
