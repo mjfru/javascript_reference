@@ -22,6 +22,26 @@ let [keyword] = [value]
 ! Operators
 *   +, -, *, /, %, ** -- Typical mathematical operators
 * = - Assign a value
+
+! Data Types
+* Numbers
+  - 2, -10, 32334.222
+  - Important for calculations and code where you need to 'work with a number'
+
+* Strings (Text)
+  - "Hi" "Hello" "Hey"
+  - Wrapped in quotes (single or double, must match) or back-ticks ``
+  - Important for outputting results
+
+! Functions
+* Code 'on demand'
+  1. Define Function
+  function greet(name) {
+    alert('Hi' + name)
+  }
+* To execute a function, you call it.
+  2. greet('Matt');
+* And it can be called as often as you want with different parameters.
 */
 
 let userName = "Matt"; // Matt
