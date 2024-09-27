@@ -52,4 +52,39 @@ document.querySelector('ul li:first-of-type')
 ? You can also do something like this too:
 const ul = document.querySelector('ul');
 ul.querySelector('li');
+
+! Manipulating Elements
+<p id="welcome-text" class="text-default">Welcome!</p>
+
+const p = document.getElementById("welcome-text");
+? Reading:
+  p.textContent = "Welcome"
+  p.id = "welcome-text"
+  p.className = "text-default"
+
+? Manipulating:
+  p.className = "next-class"
+  p.textContent = "Hello there!"
+  p.style.color = "white";
+  p.style.backgroundColor = "black";
+
+! Attributes vs. Properties:
+* Often, but not always, attributes are mapped to properties and 'live sync' is set up.
+
+* Attributes are placed in the HTML code, on element tags.
+* If we store an HTML element in a JS variable, we can access properties through dot notation, which are automatically created on DOM objects.
+  input.id
+  input.className
+  input.value
+
+input.setAttribute("value", "another default text")
+
+! Selecting Multiple Elements
+const allListItems = document.querySelectorAll('li')
+const allListItems = document.getElementsByTagName('li');
+allListItems[2] =
+
+for (const listItem of allListemItems) {
+  console.log(listItem)
+}
 */
