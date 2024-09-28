@@ -87,4 +87,42 @@ allListItems[2] =
 for (const listItem of allListemItems) {
   console.log(listItem)
 }
+
+! Traversing the DOM
+* Selecting a node allows you to 'dive into' its children, siblings, grandchildren etc.
+
+? Children - A direct child node or element
+<div>
+  <p> <--- Child of div
+    <em></em>
+  </p>
+</div>
+
+? Descendant - Direct or indirect child node or element.
+<div>
+  <p> <--- Descendant of div
+    <em></em> <--- Descendant of div
+  </p>
+</div>
+
+? Parent - Direct parent node or element
+<div> <--- Parent of p, not of em
+  <p>
+    <em></em>
+  </p>
+</div>
+
+? Ancestor - Direct or indirect parent/node
+<div> <--- Ancestor of p and em
+  <p>
+    <em></em>
+  </p>
+</div>
+
+* To go 'up', we can use parentNode, parentElement, or closest()
+* To go 'down', we can use childNodes, children[], querySelector(), etc.
+
+? There are other methods as well, such as firstChild, firstElementChild, lastChild, lastElementChild
+
+* To move parallel to sibling nodes, we can use previousSibling, nextSibling, nextElementSibing, etc.
 */
