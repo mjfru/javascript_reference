@@ -12,7 +12,10 @@
 ? What's an Array-like Object?
 * - Technically, these have a length property and use indexes to access items.
 
-! Not every array-like object is an array! Other array-likes are NodeLists and Strings.
+* Not every array-like object is an array! Other array-likes are NodeLists and Strings.
 
+
+! Creating Arrays
+There are so many different approaches in how one can create an array.
 
 */
