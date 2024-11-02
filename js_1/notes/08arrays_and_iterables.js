@@ -17,5 +17,10 @@
 
 ! Creating Arrays
 There are so many different approaches in how one can create an array.
+* See example 01creating_arrays in exercises.
 
+? What can you store in arrays?
+You can store the same types of data or mix it up.
+["Cooking", "Sports"]
+[30, "John", {moreDetail: []}];
 */
