@@ -85,3 +85,16 @@ console.log(personData.indexOf({ name: "Matt" }));
 //! Objects are never identical, so this won't work.
 
 //! Here, we need .find() or .findIndex()
+const matt = personData.find((person, index, persons) => {
+  return person.name === 'Matt';
+});
+
+console.log(matt);
+
+const mattIndex = personData.findIndex((person, index, persons) => {
+  return person.name === 'Matt'
+});
+console.log(mattIndex); // 0
+
+//! .includes() - returns a boolean value if what you're searching for exists.
+console.log(testResults.includes(10.99));
