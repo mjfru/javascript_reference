@@ -82,3 +82,27 @@ const filteredArray = prices.filter((price, index) => {
   return price > 6;
 });
 console.log(filteredArray);
+
+/*
+! The important .reduce() method
+We could do a loop to accomplish adding all the values of an array together.
+* Or, we can use less code and take advantage of the .reduce() method.
+? It takes a function, a previous value, current value, current Index, and the original array as arguments of that function.
+? The last two arguments are RARELY used.
+? It also takes a 'starting' point as an argument, after the function.
+* .reduce() goes through an array, one element at a time, and you, the programmer, can choose what to do at each step.
+You can add the current value to the previous, subtract it, multiply, etc.
+
+*/
+// let sum = 0;
+// prices.forEach((price) => {
+//   sum += price
+// })
+
+// console.log(`Sum is: ${sum}`)
+
+const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
+  return prevValue + curValue;
+}, 0);
+
+console.log(sum);
