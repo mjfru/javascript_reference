@@ -106,3 +106,13 @@ const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
 }, 0);
 
 console.log(sum);
+
+/*
+! Arrays & Strings - .split() & .join()
+* Using the .split() method, you can split apart strings, based on the 'splitter' argument, into an array.
+Optionally, you can add a second argument to specify how many elements you want back.
+
+*/
+const rawData = 'new york;10.99;2000'
+const transformedData = rawData.split(';')
+console.log(transformedData);
