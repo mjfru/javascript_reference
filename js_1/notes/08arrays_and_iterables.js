@@ -112,7 +112,12 @@ console.log(sum);
 * Using the .split() method, you can split apart strings, based on the 'splitter' argument, into an array.
 Optionally, you can add a second argument to specify how many elements you want back.
 
+* Conversely, you can use .join() to merge an array into a single string, using the argument to specify what you want in between each element.
 */
 const rawData = 'new york;10.99;2000'
 const transformedData = rawData.split(';')
 console.log(transformedData);
+
+const nameFragments = ['Jimmie', 'Bean'];
+const name = nameFragments.join(' ');
+console.log(name);
