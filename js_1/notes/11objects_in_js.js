@@ -42,6 +42,40 @@ person.greet();
 /*
 * Keys can be entered as strings, which is handy if we have a property like 'first name' or 'first-name'.
 * To access properties written like this, we can use bracket notation, with the key in quotes.
+? If the key is a number, 1.5: 'hello', for example, you also access such keys with bracket notation.
+* Objects are ordered by when the key-value pairs are added to it.
+? If the keys are numbers, they are an exception and will be ordered...in order! (1, 2, 3...)
 */
 
 console.log(person['name']);
+
+//* To add an external variable into an object, we can put the variable's name in square brackets on the LEFT side:
+
+let keyName = "favorite book"
+
+let example = {
+  'first name': 'Fred',
+  [keyName]: "Norwegian Wood"
+}
+console.log(example);
+
+/*
+! Objects Quiz:
+? 1. Which of the following syntax examples will NOT throw an error?
+*   A. const person = { username: 'Jon' };
+? 2. Will this example work?
+
+const propKey = 'field 12';
+const person = {
+    [propKey]: 'Max'
+};
+console.log(person['field 12']);
+
+*   A. Yes, it works.
+
+? 3. What would be a use-case for a dynamic property assignment (i.e. for setting a property via [] on the "left side of the colon")?
+*   A. You want to set a user-defined property name (like something entered via an input).
+
+? 4. How can you delete a property from an object?
+*   A. delete someObject.someProp;
+*/
