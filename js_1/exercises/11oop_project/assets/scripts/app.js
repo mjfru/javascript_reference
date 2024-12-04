@@ -24,9 +24,14 @@ class ElementAttribute {
 
 //! For practicing inheritance:
 class Component {
-	constructor(renderHookId) {
+	constructor(renderHookId, shouldRender = true) {
 		this.hookId = renderHookId;
+		if (shouldRender) {
+			this.render();
+		}
 	}
+
+	render() {}
 
 	createRootElement(tag, cssClasses, attributes) {
 		const rootElement = document.createElement(tag);
@@ -70,6 +75,11 @@ class ShoppingCart extends Component {
 		this.cartItems = updatedItems;
 	}
 
+	orderProducts() {
+		console.log("Ordering...");
+		console.log(this.items);
+	}
+
 	render() {
 		// const cartEl = document.createElement("section");
 		//! Because of inheritance, we can now do this:
@@ -78,15 +88,17 @@ class ShoppingCart extends Component {
       <h2>Total: \$${0}</h2>
       <button>Order Now!</button>
     `;
-		cartEl.className = "cart";
+		const orderButton = cartEl.querySelector("button");
+		orderButton.addEventListener("click", () => this.orderProducts());
 		this.totalOutput = cartEl.querySelector("h2");
 	}
 }
 
 class ProductItem extends Component {
 	constructor(product, renderHookId) {
-		super(renderHookId);
+		super(renderHookId, false);
 		this.product = product;
+		this.render();
 	}
 
 	addToCart() {
@@ -112,51 +124,63 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-	products = [
-		//! Creating a new product based on the class:
-		new Product(
-			"Bookcase",
-			"https://vermontwoodsstudios.com/cdn/shop/files/Cherry-Moon-Bookcase_1.jpg?v=1728060846&width=1946",
-			"A bookcase made from maple",
-			159.99
-		),
-		{
-			title: "Pillow",
-			imageUrl:
-				"https://target.scene7.com/is/image/Target/GUEST_ed1a5f1f-9b08-43d6-9b65-525dbf399a1e?wid=488&hei=488&fmt=pjpeg",
-			price: 29.99,
-			description: "A memory gel pillow",
-		},
-		// {
-		// 	title: "Bookcase",
-		// 	imageUrl:
-		// 		"https://vermontwoodsstudios.com/cdn/shop/files/Cherry-Moon-Bookcase_1.jpg?v=1728060846&width=1946",
-		// 	price: 159.99,
-		// 	description: "A bookcase made from maple",
-		// },
-	];
+	products = [];
 
 	constructor(renderHookId) {
+		//! Creating a new product based on the class:
 		super(renderHookId);
+		this.fetchProducts();
+	}
+
+	fetchProducts() {
+		this.products = [
+			new Product(
+				"Bookcase",
+				"https://vermontwoodsstudios.com/cdn/shop/files/Cherry-Moon-Bookcase_1.jpg?v=1728060846&width=1946",
+				"A bookcase made from maple",
+				159.99
+			),
+			new Product(
+				"Pillow",
+				"https://target.scene7.com/is/image/Target/GUEST_ed1a5f1f-9b08-43d6-9b65-525dbf399a1e?wid=488&hei=488&fmt=pjpeg",
+				"A memory foam pillow",
+				29.99
+			),
+			// {
+			// 	title: "Pillow",
+			// 	imageUrl:
+			// 		"https://target.scene7.com/is/image/Target/GUEST_ed1a5f1f-9b08-43d6-9b65-525dbf399a1e?wid=488&hei=488&fmt=pjpeg",
+			// 	price: 29.99,
+			// 	description: "A memory gel pillow",
+			// },
+		];
+		this.renderProducts();
+	}
+
+	renderProducts() {
+		for (const prod of this.products) {
+			new ProductItem(prod, "prod-list");
+		}
 	}
 
 	render() {
 		this.createRootElement("ul", "product-list", [
 			new ElementAttribute("id", "prod-list"),
 		]);
-		for (const prod of this.products) {
-			const productItem = new ProductItem(prod, "prod-list");
-			productItem.render();
+		if (this.products && this.products.length > 0) {
+			this.renderProducts();
 		}
 	}
 }
 
-class Shop {
+class Shop extends Component {
+	constructor() {
+		super();
+	}
+
 	render() {
 		this.cart = new ShoppingCart("app");
-		this.cart.render();
-		const productList = new ProductList("app");
-		productList.render();
+		new ProductList("app");
 	}
 }
 
@@ -165,7 +189,6 @@ class App {
 
 	static init() {
 		const shop = new Shop();
-		shop.render();
 		this.cart = shop.cart;
 	}
 
