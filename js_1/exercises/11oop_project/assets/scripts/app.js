@@ -124,16 +124,18 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-	products = [];
+	// # indicates something private
+	#products = [];
 
 	constructor(renderHookId) {
 		//! Creating a new product based on the class:
-		super(renderHookId);
+		super(renderHookId, false);
+		this.render();
 		this.fetchProducts();
 	}
 
 	fetchProducts() {
-		this.products = [
+		this.#products = [
 			new Product(
 				"Bookcase",
 				"https://vermontwoodsstudios.com/cdn/shop/files/Cherry-Moon-Bookcase_1.jpg?v=1728060846&width=1946",
@@ -158,7 +160,7 @@ class ProductList extends Component {
 	}
 
 	renderProducts() {
-		for (const prod of this.products) {
+		for (const prod of this.#products) {
 			new ProductItem(prod, "prod-list");
 		}
 	}
@@ -167,7 +169,7 @@ class ProductList extends Component {
 		this.createRootElement("ul", "product-list", [
 			new ElementAttribute("id", "prod-list"),
 		]);
-		if (this.products && this.products.length > 0) {
+		if (this.#products && this.#products.length > 0) {
 			this.renderProducts();
 		}
 	}
