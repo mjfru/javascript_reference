@@ -53,5 +53,11 @@ ImagePost { title, text, creatorId, imageURL, imageDesc }
 * Building multiple classes with all this duplication would be a pain.
 ! You can therefore extend the base class to the individual ones to avoid repeating yourself and creating DRY code.
 
+! Private Properties, Fields, and Methods
+* Until now, we've worked only with public properties / fields / methods.
+? Public means it's accessible outside the class / object and refer to the 'things' you work with in your other code.
+product.buy(), for example
 
+? Private means accessible only inside of the class / objects and refers to the 'things' you work with in your class only (to split and re-use code).
+Ex: Hard-coded, fallback values, re-used class-specific logic
 */
