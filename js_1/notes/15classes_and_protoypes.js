@@ -42,5 +42,36 @@ person.sayHello() <--- doesn't exist BUT maybe the prototype does (it doesn't, s
 * When you build a blueprint and an object based on it, it will naturally check the object itself based on the constructor function.
 * If it's not there, it looks in the prototype that is automatically assigned, then looks in its own prototype again, and again, until it reaches the Global object.
 
+? Let's understand that the difference between the .prototype property on constructor functions (determining what will be added to instances made with it) and the ___proto___ that's available on every object (the fallback object).
+
+* Prototype & "Method Types"
+? Method Shorthand
+class Person {
+  greet() {
+    console.log('Hello')
+  }
+}
+
+This is assigned to Person's prototype and hence shared across all instances (not re-created per instance)
+
+? Property Function
+class Person {
+  greet = function() { ... }
+  constructor() {
+    this.greet2 = function() { ... }
+  }
+}
+
+Assigned to individual instances and hence re-created per object; 'this' refers to what called the method.
+
+? Property Arrow Function
+class Person {
+  greet = () => { ... }
+  constructor() {
+    this.greet2 = () => { ... }
+  }
+}
+
+Assigned to individual instances and hence re-created per object; 'this' always refers to the instance.
 
 */
