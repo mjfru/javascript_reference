@@ -9,7 +9,7 @@ class DOMHelper {
 		const element = document.getElementById(elementId);
 		const destinationElement = document.querySelector(newDestinationSelector);
 		destinationElement.append(element);
-    //! New
+		//! New
 		element.scrollIntoView({ behavior: "smooth" });
 	}
 }
@@ -55,7 +55,15 @@ class Tooltip extends Component {
 	create() {
 		const tooltipElement = document.createElement("div");
 		tooltipElement.className = "card";
-		tooltipElement.textContent = this.text;
+		const tooltipTemplate = document.getElementById("tooltip");
+		const tooltipBody = document.importNode(tooltipTemplate.content, true);
+		tooltipBody.querySelector("p").textContent = this.text;
+		tooltipElement.append(tooltipBody);
+		//? Replaced by using <template> in the HTML index.
+		// tooltipElement.innerHTML = `
+		//   <h2>More Info</h2>
+		//   <p>${this.text}</p>
+		// `
 
 		const hostElPosLeft = this.hostElement.offsetLeft;
 		const hostElPosTop = this.hostElement.offsetTop;
@@ -180,6 +188,35 @@ class App {
 		finishedProjectsList.setSwitchHandlerFunction(
 			activeProjectsList.addProject.bind(activeProjectsList)
 		);
+
+		//! Dynamically creating scrips...in JS!
+		// const someScript = document.createElement('script');
+		// someScript.textContent = "alert('Hi there');";
+		// document.head.append(someScript);
+		// this.startAnalytics();
+
+		//! Timing it (once):
+		// setTimeout(this.startAnalytics, 3000);
+		const timerId = setTimeout(this.startAnalytics, 3000);
+
+		//! Stopping a timer with an event:
+		document
+			.getElementById("stop-analytics-button")
+			.addEventListener("click", () => {
+				clearTimeout(timerId);
+			});
+
+		//! Setting it as an event listener:
+		// document
+		// 	.getElementById("start-analytics-button")
+		// 	.addEventListener("click", this.startAnalytics);
+	}
+
+	static startAnalytics() {
+		const analyticsScript = document.createElement("script");
+		analyticsScript.src = "assets/scripts/analytics.js";
+		analyticsScript.defer = true;
+		document.head.append(analyticsScript);
 	}
 }
 
