@@ -32,7 +32,16 @@ button.onclick = buttonClickHandler;
 
 * Using .addEventListener() allows us to add multiple event listeners and utilize the .removeEventListener() method as well.
 
-* Common other events include:
-  - mouseover
-  - 
+! DOM Events - Bubbling & Capturing
+* Events in JS have two distinct phases: the capturing phase and the bubbling phase.
+
+
+! Drag & Drop Events
+- Elements need to be marked as 'draggable' (or have it set to true).
+-- Listen to a 'dragstart' event; allowing us to describe the operation and append data.
+--- Accept Drop via 'dragenter' and 'dragover' events => preventDefault();
+---- Optional: Listen to a 'dragleave' event (update styles, etc.).
+----- Listen to 'drop' event and update data / UI
+------ Optional: Listen to 'dragend' event and update data / UI
+
 */
