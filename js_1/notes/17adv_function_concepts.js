@@ -26,4 +26,36 @@ const calculateIncomeTaxAmount = createTaxCalculator(0.25);
 console.log(calculateVatAmount(100));
 console.log(calculateVatAmount(200));
 
+/*
+! Closures
+* Every function is a closure in JS, every function closes over the surrounding environment and remembers them! (Interview prep)
+A function within a function has access to its parent's variables and any global variables.
+The outer function cannot access the inner function's variables.
+? These are DIFFERENT LEXICAL ENVIRONMENTS.
+*/
 
+/*
+! Recursion
+* The practice of a function calling itself, usually to save on syntax and solved nested problems.
+*/
+
+/*
+! Advanced Functions Quiz:
+
+TODO #1: Is the following function a pure function?
+let defaultValue = 10;
+function addNumber(num) {
+    return num + defaultValue;
+}
+
+? ANSWER: No, it doesn't yield the same output.
+
+TODO #2: When does a function have a "side effect"?
+? ANSWER: A function interacts with something outside of the function or does something that's not directly related to its internal calculation.
+
+TODO #3: Why is every function a 'closure' in JavaScript?
+? ANSWER: Because it memorizes the surrounding environment and the variables of that environment.
+
+TODO #4: When is a function a recursive function?
+? ANSWER: When / If it calls itself.
+*/
