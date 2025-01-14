@@ -20,4 +20,28 @@ const showAlert = () => { alert('Danger!') }   - Created
 setTimeout(showAlert, 2000);                    - Invoked, added to stack, passed to browser.
 greet();                                        - Calls function ('hi')
                                                 - Alert appears from the timeout.
+
+* As we can see from these examples and what's been demo'd, writing async code like this really is not great for readability.
+! This is known as callback hell!
+
+! Promises -- Simplify our callbacks and async code.
+
+? No Promises:
+doAsyncTask(() => {
+  setTimeout(() => {
+    doMoreAsyncStuff(() => {
+      ...
+      })
+      }, 1000);
+    }, ...);
+
+? Promises!:
+doAsyncTask()
+  .then(() => {
+    return someTask();
+  })
+  .then(() => {
+    return anotherTask();
+  })
+  .then(...);
 */
