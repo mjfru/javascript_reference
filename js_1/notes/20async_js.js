@@ -44,4 +44,48 @@ doAsyncTask()
     return anotherTask();
   })
   .then(...);
+
+! Quiz
+? What's a Promise in JavaScript?
+* Promises are objects which 'wrap' asynchronous code to make it easier to work with.
+
+? What is "Chaining" in the context of a Promise?
+* You can chain .then() and .catch() methods onto each other since each then() and catch() method returns new promises which are yet to be settled.
+
+? Does the last then() block in the below example execute (i.e. does the function passed to it execute)?
+
+const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Timer completed!');
+    }, 1000);
+})
+    .then((text) => { throw new Error('Failed!') })
+    .catch(err => console.log(err))
+    .then(() => console.log('Does that execute?'));
+
+* Yes! As long as you handle the error via a catch() block, you can have working then() blocks thereafter. catch() also returns a new promise.
+
+? What's the difference between async / await and Promises?
+* They are a code transformation which still uses promises behind the scenes.
+
+? What's the promise equivalent to this code?
+
+async function wait() {
+    try {
+        const result = await doSomething();
+        console.log(result);
+    } catch (error) {
+        console.log('Error!');
+    }
+}
+
+* function wait() {
+*   doSomething()
+*     .then(result => {
+*       console.log(result);
+*   })
+*   .catch(error => {
+*     console.log('Error!');  
+*  })
+* }
 */
