@@ -43,4 +43,8 @@ HTTP Body - Data to be sent in different formats, like JSON
 * Server
 May run on a different server / domain
 Responsible for storing and retrieving data (with a database)
+
+! Fetch API vs. XMLHttpRequest
+* The Fetch API is more modern and comes with promises out of the box; less syntax!
+? However, error handling is a bit obtuse with Fetch
 */
