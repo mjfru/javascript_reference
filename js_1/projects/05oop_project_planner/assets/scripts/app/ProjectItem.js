@@ -1,5 +1,6 @@
 import { DOMHelper } from "../utility/DOMHelper.js";
-import { Tooltip } from "./Tooltip.js";
+//? Let's try to import this dynamically instead, only loading it when we actually need it:
+// import { Tooltip } from "./Tooltip.js";
 
 export class ProjectItem {
 	hasActiveTooltip = false;
@@ -17,15 +18,19 @@ export class ProjectItem {
 		}
 		const projectElement = document.getElementById(this.id);
 		const tooltipText = projectElement.dataset.extraInfo;
-		const tooltip = new Tooltip(
-			() => {
-				this.hasActiveTooltip = false;
-			},
-			tooltipText,
-			this.id
-		);
-		tooltip.attach();
-		this.hasActiveTooltip = true;
+		
+    //! Dynamic import example:
+		import("./Tooltip.js").then((module) => {
+			const tooltip = new module.Tooltip(
+				() => {
+					this.hasActiveTooltip = false;
+				},
+				tooltipText,
+				this.id
+			);
+			tooltip.attach();
+			this.hasActiveTooltip = true;
+		});
 	}
 
 	connectMoreInfoButton() {
