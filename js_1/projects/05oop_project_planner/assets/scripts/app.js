@@ -19,14 +19,14 @@ class App {
 
 		//! Timing it (once):
 		// setTimeout(this.startAnalytics, 3000);
-		const timerId = setTimeout(this.startAnalytics, 3000);
+		// const timerId = setTimeout(this.startAnalytics, 3000);
 
 		//! Stopping a timer with an event:
-		document
-			.getElementById("stop-analytics-button")
-			.addEventListener("click", () => {
-				clearTimeout(timerId);
-			});
+		// document
+		// 	.getElementById("stop-analytics-button")
+		// 	.addEventListener("click", () => {
+		// 		clearTimeout(timerId);
+		// 	});
 
 		//! Setting it as an event listener:
 		// document

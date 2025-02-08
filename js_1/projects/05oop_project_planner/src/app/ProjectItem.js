@@ -1,4 +1,4 @@
-import { DOMHelper } from "../utility/DOMHelper.js";
+import { DOMHelper } from "../../assets/scripts/utility/DOMHelper.js";
 //? Let's try to import this dynamically instead, only loading it when we actually need it:
 // import { Tooltip } from "./Tooltip.js";
 
@@ -10,7 +10,7 @@ export class ProjectItem {
 		this.updateProjectListsHandler = updateProjectListsFunction;
 		this.connectMoreInfoButton();
 		this.connectSwitchButton(type);
-    this.connectDrag();
+		this.connectDrag();
 	}
 
 	showMoreInfoHandler() {
@@ -19,8 +19,8 @@ export class ProjectItem {
 		}
 		const projectElement = document.getElementById(this.id);
 		const tooltipText = projectElement.dataset.extraInfo;
-		
-    //! Dynamic import example:
+
+		//! Dynamic import example:
 		import("./Tooltip.js").then((module) => {
 			const tooltip = new module.Tooltip(
 				() => {
@@ -34,17 +34,17 @@ export class ProjectItem {
 		});
 	}
 
-  connectDrag() {
-    const item = document.getElementById(this.id);
-    item.addEventListener('dragstart', event => {
-      event.dataTransfer.setData('text/plain', this.id);
-      event.dataTransfer.effectAllowed = 'move';
-    });
+	connectDrag() {
+		const item = document.getElementById(this.id);
+		item.addEventListener("dragstart", (event) => {
+			event.dataTransfer.setData("text/plain", this.id);
+			event.dataTransfer.effectAllowed = "move";
+		});
 
-    item.addEventListener('dragend', event => {
-      console.log(event);
-    });
-  }
+		item.addEventListener("dragend", (event) => {
+			console.log(event);
+		});
+	}
 
 	connectMoreInfoButton() {
 		const projectItemElement = document.getElementById(this.id);
