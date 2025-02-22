@@ -51,15 +51,15 @@ const company = {
 		// }
 		let currentEmployee = 0;
 		while (currentEmployee < this.employees.length) {
-      //? yield saves the current step on the iteration, so if you call it again, it will pick up where it stopped.
+			//? yield saves the current step on the iteration, so if you call it again, it will pick up where it stopped.
 			yield this.employees[currentEmployee];
-      currentEmployee++
+			currentEmployee++;
 		}
 	},
 };
 
 for (const employee of company) {
-  console.log(employee);
+	console.log(employee);
 }
 
 // const it = company.getEmployee();
@@ -72,3 +72,33 @@ for (const employee of company) {
 // console.log(company.next());
 // console.log(company.next());
 // console.log(company.next());
+
+//! Reflect API
+//* This API allows us to control objects, grouping functionalities to help us work with objects; has more methods and is newer than using Object
+
+const course = {
+	title: "JavaScript",
+};
+
+Reflect.setPrototypeOf(course, {
+	toString() {
+		return this.title;
+	},
+});
+
+console.log(course.toString());
+
+//! Proxy API
+//* Creates 'traps' for object operators, steps in and executes code.
+//* Allows us to control how our code is used!
+
+const courseHandler = {
+  get(object, propertyName) {
+    console.log(propertyName);
+    return object(propertyName);
+  }
+}
+// Wrapping an object over our course object, essentially
+const proxyCourse = new Proxy(course, courseHandler);
+console.log(proxyCourse.title);
+
