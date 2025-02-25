@@ -1,27 +1,30 @@
-console.log("Hello there!");
-// node app.js ---> 'Hello there!' in the console.
+//! Working with HTTP Requests
 
-const userName = "user";
+// Allows us to work with HTTP requests
+const http = require("http");
 
-console.log(`Hi ${userName}!`);
-
-// Using the file system
-const fs = require("fs");
-
-// (path to desired file, what we want to write)
-fs.writeFile("user-data.txt", "username=Matt", (error) => {
-	if (error) {
-		console.log(error);
-	} else {
-		console.log("Wrote to file!");
-	}
+const server = http.createServer((request, response) => {
+	// Parsing the request
+	let body = [];
+	// console.log(request.method, request.url);
+	request.on("data", (chunk) => {
+		body.push(chunk);
+	});
+	request.on("end", () => {
+		body = Buffer.concat(body).toString();
+		console.log(body);
+		let userName = 'New User'
+    if (body) {
+      userName = body.split("=")[1];
+    }
+		response.setHeader("Content-Type", "text/html");
+		response.write(`<h1>Hello there, ${userName}!</h1>`),
+			response.write(
+				"<form method='POST' action='/'><input name='username' type='text'><button type='submit'>Send</button></form>"
+			);
+		response.end();
+	});
 });
 
-fs.readFile('user-data.txt', (error, data) => {
-  if (error) {
-    console.log(error);
-    return;
-  } else {
-    console.log(data.toString());
-  }
-})
+// Specify the port you want to use:
+server.listen(3000);
